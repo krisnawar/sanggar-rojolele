@@ -13,8 +13,7 @@ class Video extends FrontPage
     public function __construct()
     {
         parent::__construct();
-        // $this->API_KEY = 'AIzaSyA5X7w0X16t-WNf5qqUIxeC2rID8Hys4Zg';
-        $this->API_KEY = 'AIzaSyA7Ro5BOdpOK9kRvLNy16C9EY-CfCDnw9k';
+        $this->API_KEY = 'YOUR_API_KEY';
         $this->urlAllVids = 'https://www.googleapis.com/youtube/v3/';
         $this->urlPerVid = 'https://www.googleapis.com/youtube/v3/videos';
         $this->channelId = 'UC2-9Y4ahfd_Ef3_0OQ8o1CQ';
