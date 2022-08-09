@@ -1,0 +1,100 @@
+<?= $this->extend('layout/template') ?>
+
+<?= $this->section('content-wrapper'); ?>
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2><?= $subtitle ?></h2>
+                <ol>
+                    <?php
+                    $countEl = array_keys($breadcrumbs);
+                    $last = end($countEl);
+                    foreach ($breadcrumbs as $key => $bc) :
+                        if ($key == $last) {
+                            echo '<li class="breadcrumb-item active">' . $bc . '</li>';
+                        } else {
+                            echo '<li class="breadcrumb-item">' . $bc . '</li>';
+                        }
+                    ?>
+
+                    <?php endforeach ?>
+                </ol>
+            </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+            <div class="row mb-3">
+                <div class="col">
+                    <h2><strong><span><?= $category_name ?></span></strong></h2>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg entries">
+
+                    <?php foreach ($articles as $article) : ?>
+                        <article class="entry">
+
+                            <div class="entry-img">
+                                <img src="<?= $article['header_img'] ?>" alt="<?= $article['title'] ?>" class="img-fluid">
+                            </div>
+
+                            <h1 class="entry-title">
+                                <a href="/fmsm/read/<?= $article['article_slug'] ?>"><?= $article['title'] ?></a>
+                            </h1>
+
+                            <div class="entry-meta">
+                                <ul>
+                                    <!-- <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li> -->
+                                    <!-- <li class="d-flex align-items-center"><i class="bi bi-tag"></i> <?= $article['category'] ?></li> -->
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-clock"></i>
+                                        <?php
+                                        $date = new DateTime($article['timestamp']);
+                                        echo $date->format('j F Y');
+                                        ?>
+                                    </li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-eye"></i><?= $article['clicked_count'] ?> kali</li>
+                                </ul>
+                            </div>
+
+                            <div class="entry-content">
+                                <p>
+                                    <?= substr(strip_tags($article['content']), 0, 300) ?> [...]
+                                </p>
+                                <div class="read-more">
+                                    <a href="/fmsm/read/<?= $article['article_slug'] ?>">Selengkapnya</a>
+                                </div>
+                            </div>
+
+                        </article><!-- End blog entry -->
+                    <?php endforeach ?>
+
+                    <div class="blog-pagination">
+                        <ul class="justify-content-center">
+                            <?= $pager->links() ?>
+                        </ul>
+                    </div>
+
+                </div><!-- End blog entries list -->
+
+
+
+            </div>
+
+        </div>
+    </section><!-- End Blog Section -->
+
+</main>
+
+<?= $this->endSection(); ?>
